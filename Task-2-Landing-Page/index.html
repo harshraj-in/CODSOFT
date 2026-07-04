@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wavelength — Real-time API observability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 22 22" fill="none">
+          <path d="M2 14L6 8L10 16L14 4L18 12L20 9" stroke="#FFB454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        wavelength
+      </div>
+      <div class="nav-links">
+        <a href="#features">Product</a>
+        <a href="#how">Setup</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#footer">Docs</a>
+      </div>
+      <div class="nav-cta">
+        <button type="button" class="btn btn-ghost btn-sm js-open-auth" data-mode="signin">Sign in</button>
+        <button type="button" class="btn btn-primary btn-sm js-open-auth" data-mode="signup">Start free</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow mono"><span class="dot"></span> 128,402 endpoints monitored right now</div>
+          <h1>Know the moment your API<br> starts to <span class="hl">slow down.</span></h1>
+          <p class="lead">Wavelength watches latency, error rate, and uptime across every route you ship, and pages the right person before customers notice.</p>
+          <div class="hero-ctas">
+            <button type="button" class="btn btn-primary js-open-auth" data-mode="signup">Start free — no card</button>
+            <a href="#how" class="btn btn-ghost">See how it works</a>
+          </div>
+          <div class="hero-note mono">curl -s https://get.wavelength.dev | sh — installed in under 2 minutes</div>
+        </div>
+
+        <div class="panel" aria-label="Live latency monitor example">
+          <div class="panel-head mono">
+            <span class="route">GET /v1/checkout</span>
+            <div class="traffic-lights"><span></span><span></span><span></span></div>
+          </div>
+          <div class="panel-body">
+            <div class="readout">
+              <div>
+                <span class="big mono" id="liveNum">118</span><span class="unit">ms avg</span>
+              </div>
+              <div class="pct mono">
+                <div>p95<b>241ms</b></div>
+                <div>p99<b>388ms</b></div>
+              </div>
+            </div>
+            <svg class="wave" viewBox="0 0 400 110" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FFB454" stop-opacity="0.55"/>
+                  <stop offset="100%" stop-color="#FFB454" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path id="waveFill" class="wave-fill" d=""></path>
+              <path id="wavePath" class="wave-path" d=""></path>
+              <circle id="waveCursor" class="wave-cursor" r="4" cx="400" cy="55"></circle>
+            </svg>
+          </div>
+          <div class="panel-foot mono">
+            <span><b>●</b> healthy</span>
+            <span>alert threshold: 400ms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="num">41ms</div>
+          <div class="label">Median time to detect a regression</div>
+        </div>
+        <div class="stat">
+          <div class="num">99.99%</div>
+          <div class="label">Uptime SLA on the monitoring plane</div>
+        </div>
+        <div class="stat">
+          <div class="num">640+</div>
+          <div class="label">Engineering teams on Wavelength</div>
+        </div>
+        <div class="stat">
+          <div class="num">&lt;2min</div>
+          <div class="label">From install to first alert</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag mono">// what it does</span>
+        <h2>Everything between a request and a response.</h2>
+        <p>Wavelength sits in the request path with negligible overhead, so what you see in the dashboard is what your users actually experienced.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="tag mono">// alerts</span>
+          <h3>Alerts that name the cause</h3>
+          <p>When p99 crosses your threshold, Wavelength attaches the deploy, the query, and the trace that triggered it, so the on-call engineer opens one link, not five dashboards.</p>
+        </div>
+        <div class="feature">
+          <span class="tag mono">// tracing</span>
+          <h3>Traces down to the query</h3>
+          <p>Follow a single request across services, queues, and databases. Every span is searchable by route, status code, or customer ID.</p>
+        </div>
+        <div class="feature">
+          <span class="tag mono">// dashboards</span>
+          <h3>Dashboards your team edits</h3>
+          <p>Build a view for checkout, another for auth, another for the API you sell to customers. No YAML, no query language to learn first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag mono">// setup</span>
+        <h2>Three steps, one afternoon.</h2>
+        <p>Wavelength drops into an existing service without a rewrite. Most teams have their first real alert firing the same day.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="idx mono">01</span>
+          <h3>Install the agent</h3>
+          <p>One binary, no sidecar required.</p>
+          <pre>curl -s https://get.wavelength.dev | sh</pre>
+        </div>
+        <div class="step">
+          <span class="idx mono">02</span>
+          <h3>Point it at your service</h3>
+          <p>Add one line to your existing entrypoint.</p>
+          <pre>wavelength.watch(app, { env: "prod" })</pre>
+        </div>
+        <div class="step">
+          <span class="idx mono">03</span>
+          <h3>Set your threshold</h3>
+          <p>Define what "slow" means for this route, and who gets paged.</p>
+          <pre>alert p95 > 400ms -> #oncall</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band" id="pricing">
+    <div class="wrap">
+      <h2>Free while you're finding out if it's for you.</h2>
+      <p>No credit card. Up to 3 services and 14 days of retention on the free plan.</p>
+      <div class="hero-ctas">
+        <button type="button" class="btn btn-primary js-open-auth" data-mode="signup">Start free</button>
+        <a href="mailto:engineering@wavelength.dev" class="btn btn-ghost">Talk to engineering</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 22 22" fill="none">
+          <path d="M2 14L6 8L10 16L14 4L18 12L20 9" stroke="#FFB454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        wavelength
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>PRODUCT</h4>
+          <a href="#features">Monitoring</a>
+          <a href="#how">Setup guide</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>RESOURCES</h4>
+          <a href="#">Documentation</a>
+          <a href="#">Status page</a>
+          <a href="#">Changelog</a>
+        </div>
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Wavelength, Inc.</span>
+      <span class="mono">status: all systems operational</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="authOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+    <div id="modalForm">
+      <div class="modal-head">
+        <h3 id="modalTitle">Sign in</h3>
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <p class="modal-sub" id="modalSub">Welcome back. Enter your details to continue.</p>
+
+      <form id="authForm" novalidate>
+        <div class="field" id="emailField">
+          <label for="emailInput">Work email</label>
+          <input type="email" id="emailInput" placeholder="you@company.com" autocomplete="email" />
+          <div class="field-error">Enter a valid email address.</div>
+        </div>
+        <div class="field" id="passwordField">
+          <label for="passwordInput">Password</label>
+          <input type="password" id="passwordInput" placeholder="••••••••" autocomplete="current-password" />
+          <div class="field-error">Password must be at least 8 characters.</div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Sign in</button>
+      </form>
+
+      <div class="modal-switch">
+        <span id="switchText">Don't have an account?</span>
+        <button type="button" id="switchBtn">Start free</button>
+      </div>
+    </div>
+
+    <div class="modal-success" id="modalSuccess" style="display:none;">
+      <div class="check">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#4ADE9A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 id="successTitle">You're in.</h3>
+      <p id="successSub">This is a demo — no account was actually created.</p>
+      <button type="button" class="btn btn-ghost" id="successClose" style="width:100%;">Close</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Generate a plausible latency waveform and animate a live cursor + ticking number.
+  (function(){
+    const W = 400, H = 110, N = 40;
+    const points = [];
+    let base = 110;
+    for(let i=0;i<N;i++){
+      base += (Math.random()-0.5)*18;
+      base = Math.max(50, Math.min(170, base));
+      points.push(base);
+    }
+
+    function toPath(vals){
+      const step = W/(vals.length-1);
+      let d = `M0 ${H - (vals[0]/220)*H}`;
+      for(let i=1;i<vals.length;i++){
+        d += ` L${i*step} ${H - (vals[i]/220)*H}`;
+      }
+      return d;
+    }
+    function toFill(vals){
+      return toPath(vals) + ` L${W} ${H} L0 ${H} Z`;
+    }
+
+    const pathEl = document.getElementById('wavePath');
+    const fillEl = document.getElementById('waveFill');
+    const cursor = document.getElementById('waveCursor');
+    const liveNum = document.getElementById('liveNum');
+
+    function render(){
+      pathEl.setAttribute('d', toPath(points));
+      fillEl.setAttribute('d', toFill(points));
+      const last = points[points.length-1];
+      cursor.setAttribute('cy', H - (last/220)*H);
+      liveNum.textContent = Math.round(last);
+    }
+    render();
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduceMotion){
+      setInterval(()=>{
+        points.shift();
+        let next = points[points.length-1] + (Math.random()-0.5)*22;
+        next = Math.max(50, Math.min(190, next));
+        points.push(next);
+        render();
+      }, 1400);
+    }
+  })();
+
+  // ---------- Auth modal ----------
+  (function(){
+    const overlay = document.getElementById('authOverlay');
+    const modalForm = document.getElementById('modalForm');
+    const modalSuccess = document.getElementById('modalSuccess');
+    const title = document.getElementById('modalTitle');
+    const sub = document.getElementById('modalSub');
+    const submitBtn = document.getElementById('submitBtn');
+    const switchText = document.getElementById('switchText');
+    const switchBtn = document.getElementById('switchBtn');
+    const closeBtn = document.getElementById('modalClose');
+    const successClose = document.getElementById('successClose');
+    const successTitle = document.getElementById('successTitle');
+    const successSub = document.getElementById('successSub');
+    const form = document.getElementById('authForm');
+    const emailField = document.getElementById('emailField');
+    const passwordField = document.getElementById('passwordField');
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+
+    let mode = 'signin';
+    let lastFocused = null;
+
+    function setMode(next){
+      mode = next;
+      if(mode === 'signin'){
+        title.textContent = 'Sign in';
+        sub.textContent = 'Welcome back. Enter your details to continue.';
+        submitBtn.textContent = 'Sign in';
+        switchText.textContent = "Don't have an account?";
+        switchBtn.textContent = 'Start free';
+      } else {
+        title.textContent = 'Create your account';
+        sub.textContent = 'Free for up to 3 services. No card required.';
+        submitBtn.textContent = 'Create account';
+        switchText.textContent = 'Already have an account?';
+        switchBtn.textContent = 'Sign in';
+      }
+    }
+
+    function openModal(initialMode){
+      setMode(initialMode);
+      modalForm.style.display = '';
+      modalSuccess.style.display = 'none';
+      form.reset();
+      [emailField, passwordField].forEach(f => f.classList.remove('has-error'));
+      lastFocused = document.activeElement;
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(()=> emailInput.focus(), 50);
+    }
+
+    function closeModal(){
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if(lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.js-open-auth').forEach(btn=>{
+      btn.addEventListener('click', ()=> openModal(btn.dataset.mode || 'signin'));
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    successClose.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+    });
+    switchBtn.addEventListener('click', ()=> setMode(mode === 'signin' ? 'signup' : 'signin'));
+
+    function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      let valid = true;
+
+      if(!isValidEmail(emailInput.value.trim())){
+        emailField.classList.add('has-error');
+        valid = false;
+      } else {
+        emailField.classList.remove('has-error');
+      }
+
+      if(passwordInput.value.length < 8){
+        passwordField.classList.add('has-error');
+        valid = false;
+      } else {
+        passwordField.classList.remove('has-error');
+      }
+
+      if(!valid) return;
+
+      modalForm.style.display = 'none';
+      modalSuccess.style.display = '';
+      if(mode === 'signin'){
+        successTitle.textContent = 'Welcome back.';
+        successSub.textContent = 'This is a demo — no real sign-in occurred.';
+      } else {
+        successTitle.textContent = "You're in.";
+        successSub.textContent = 'This is a demo — no account was actually created.';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
